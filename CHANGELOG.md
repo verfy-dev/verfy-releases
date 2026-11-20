@@ -2,6 +2,13 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.1 (2026-11-20)
+
+- **Fix: a script ending in an unfinished string with a backslash was let through unread.** Reading such a file stepped past its end, the script reader stopped, and the call kept only the rules' answer for the command (`python e.py`), so the `rm -rf ~` inside was not seen. A crafted file could use this to hide from 0.26.0's script reading. Found by the new fuzz test the same day.
+- **What the script reader cannot parse now asks.** A file Verfy fails to read no longer drops the whole check: the other files of the call still count, and code the agent wrote that could not be read asks first (VFY-SCRIPT-002) instead of running unread.
+- **Fuzzing.** `tests/fuzz_precheck.py` fuzzes the rule engine and the script reader with Atheris (`pip install atheris`, Linux, Python 3.11 or 3.12), and `tests/test_fuzz_smoke.py` runs the same targets on random inputs in every test run: no input may make them raise.
+- The README shows the project's [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/verfy-dev/verfy).
+
 ## 0.26.0 (2026-11-20)
 
 - **A script is read before it runs.** Until now the guard judged the command an agent ran, so `python fix.py` was checked as a command and `fix.py` itself was not; an agent could write the dangerous part into a file and run the file. Now, before such a command runs, Verfy reads the code it starts and checks it with the same rules:
