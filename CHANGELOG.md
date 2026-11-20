@@ -2,6 +2,12 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.3 (2026-11-20)
+
+- **The first minute.** `verfy` on its own now shows three steps (`verfy demo`, `verfy init`, `verfy doctor --live`) instead of forty commands; `verfy --help` still lists them all. `verfy demo` ends with the next step, and `verfy init` names `verfy doctor --live` among its next steps.
+- **`verfy check` reads scripts too.** `verfy check python fix.py` reads `fix.py` the way the hook does, and shows every finding in it with the file and line, since a person asked.
+- The README shows the script check in action.
+
 ## 0.26.2 (2026-11-20)
 
 - **Cursor, checked against Cursor's hook reference.** The Cursor hook is no longer marked beta. A new test, `tests/test_cursor_spec.py`, sends every event Verfy registers with every field Cursor's reference lists and accepts only the answers each event takes. What it found is fixed:
