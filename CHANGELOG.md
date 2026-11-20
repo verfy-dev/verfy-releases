@@ -2,6 +2,15 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.2 (2026-11-20)
+
+- **Cursor, checked against Cursor's hook reference.** The Cursor hook is no longer marked beta. A new test, `tests/test_cursor_spec.py`, sends every event Verfy registers with every field Cursor's reference lists and accepts only the answers each event takes. What it found is fixed:
+  - **Files attached to a read** (`beforeReadFile`'s `attachments`) are checked like the file itself: attaching `~/.ssh/id_rsa` to a read of `notes.md` is denied.
+  - **Cursor's Write tool** may send the file under `contents`; that key, and `file_content` and `new_content`, are now read as the file's text, so a secret or a script in it is checked before the write.
+  - **MCP results with keys taken out** are answered as an object (`updated_mcp_tool_output`), as the reference says, also when the result arrived as a JSON string.
+- **Hook input on Windows is read as UTF-8.** Python decoded the pipe with the system's code page (cp1251, cp1252, ...), which garbled a path with non-ASCII letters (`C:\Users\Жавохир\...`) and could make a hook fail into asking. The bytes are now decoded as UTF-8, with a byte-order mark or UTF-16 from PowerShell handled too. This was true of every agent's hook, Claude Code's included.
+- **`verfy doctor --live` checks more of Cursor:** besides `ls` and `rm -rf ~`, a read of a project file must pass, and a read of `~/.ssh/id_rsa` and a write to Claude Code's settings must be stopped, sent as UTF-8 the way Cursor sends them.
+
 ## 0.26.1 (2026-11-20)
 
 - **Fix: a script ending in an unfinished string with a backslash was let through unread.** Reading such a file stepped past its end, the script reader stopped, and the call kept only the rules' answer for the command (`python e.py`), so the `rm -rf ~` inside was not seen. A crafted file could use this to hide from 0.26.0's script reading. Found by the new fuzz test the same day.
