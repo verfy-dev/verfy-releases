@@ -32,6 +32,6 @@ The extension changes no file itself and makes no network call. Every change goe
 
 ## Limits
 
-The hooks for Cursor, Codex, Gemini CLI, Copilot and Windsurf are beta. They follow each agent's documentation and have not yet run inside every agent. A remote MCP server that signs in with OAuth is left as it is. Verfy's rules are pattern matching: a seat belt, not a wall.
+The hooks for Cursor, Codex, Gemini CLI, GitHub Copilot and Devin Desktop (Windsurf) are checked by tests against each agent's hook reference or source; we have not run every one inside its agent ourselves. A remote MCP server that signs in with OAuth is left as it is. Verfy's rules are pattern matching: a seat belt, not a wall.
 
 [Docs](https://verfy.dev/docs) · [Security model](https://verfy.dev/security) · [Source](https://github.com/verfy-dev/verfy)
