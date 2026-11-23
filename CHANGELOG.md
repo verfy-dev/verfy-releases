@@ -2,6 +2,12 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.5 (2026-11-23)
+
+- **The sandboxed editor terminal is no longer beta.** `verfy setup --sandbox-terminal on` (and the editor extension's "Open the terminal inside the sandbox") now checks that the sandbox is installed before it writes the editor's terminal profile: `srt` on macOS and Linux, and on Windows both `verfy` and `srt` inside WSL2. Before, a missing sandbox left VS Code, Cursor or Devin Desktop with a terminal that did not open, so the agent could run nothing. Now nothing is changed and Verfy says what to install. Turning it off always works.
+- **Verfy Cloud's Slack buttons are no longer beta** on the website. A new test in Verfy Cloud checks the signature against the worked example on Slack's request-verification page, the `block_actions` request, the app manifest keys and every Block Kit limit.
+- The root README has the website's headline, and the READMEs no longer call Verfy Cloud or the editor hooks beta.
+
 ## 0.26.4 (2026-11-23)
 
 - **GitHub Copilot and Devin, checked against their hook references.** Their hooks are no longer marked beta. A new test, `tests/test_copilot_devin_spec.py`, sends each agent's documented input (Copilot's camelCase and PascalCase formats; Devin's `PreToolUse`) and accepts only the answers each reference describes. What it found is fixed:

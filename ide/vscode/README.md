@@ -5,7 +5,7 @@ Guard the AI agents in your editor. Verfy checks each tool call an agent makes b
 The checks are done by the [Verfy CLI](https://verfy.dev/install) (free, MIT). This extension sets it up and shows what it does:
 
 - **Set up every agent on this computer.** It finds Claude Code, Cursor, Codex CLI, Gemini CLI, GitHub Copilot, Windsurf and Claude Desktop. It adds Verfy's hook to each and puts their MCP servers behind the Verfy gateway. You see the list of changes first, and a backup of every changed file is kept.
-- **Open the terminal inside the sandbox (beta).** The editor's AI agent runs its commands in the editor's terminal. With this on, that terminal starts inside `verfy run --sandbox`, so a command can write only in the project and reach only the hosts your policy allows. On Windows this needs WSL2 with `verfy` and `srt` inside it.
+- **Open the terminal inside the sandbox.** The editor's AI agent runs its commands in the editor's terminal. With this on, that terminal starts inside `verfy run --sandbox`, so a command can write only in the project and reach only the hosts your policy allows. On Windows this needs WSL2 with `verfy` and `srt` inside it.
 - **Fix risky agent settings** (`verfy posture --fix`): bypass modes and hooks switched off, each fixed with the smallest edit after you see it.
 - **Take Verfy out again** (`verfy setup --undo`): its hooks, the gateway and the sandboxed terminal, everything else kept.
 - **Check this computer** (`verfy doctor`) and **show the latest receipts** (`verfy ledger show`).
