@@ -2,6 +2,10 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.6 (2026-11-23)
+
+- **Text written into a documentation file is no longer read as commands.** A command like `cat >> notes.md <<'EOF' ... EOF` was blocked when the text mentioned a dangerous command (for example a recursive delete of the home folder), because every line of a here-document was checked as a command. Now a here-document is read as text when it only goes into documentation files (`.md`, `.txt`, `.rst`, `.adoc`, `.log`, `.csv`) through `cat` or `tee`, nothing around it is piped, run with sudo or substituted, and an unquoted body holds no `$(...)` or backticks. Anything else is checked line by line as before: a body piped into a shell or fed to one, written to a script or a shell profile, or run later in the same command. `tests/test_heredoc_data.py` covers both sides.
+
 ## 0.26.5 (2026-11-23)
 
 - **The sandboxed editor terminal is no longer beta.** `verfy setup --sandbox-terminal on` (and the editor extension's "Open the terminal inside the sandbox") now checks that the sandbox is installed before it writes the editor's terminal profile: `srt` on macOS and Linux, and on Windows both `verfy` and `srt` inside WSL2. Before, a missing sandbox left VS Code, Cursor or Devin Desktop with a terminal that did not open, so the agent could run nothing. Now nothing is changed and Verfy says what to install. Turning it off always works.
