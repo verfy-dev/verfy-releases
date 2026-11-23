@@ -2,6 +2,14 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.26.4 (2026-11-23)
+
+- **GitHub Copilot and Devin, checked against their hook references.** Their hooks are no longer marked beta. A new test, `tests/test_copilot_devin_spec.py`, sends each agent's documented input (Copilot's camelCase and PascalCase formats; Devin's `PreToolUse`) and accepts only the answers each reference describes. What it found is fixed:
+  - **Copilot running Claude Code's hook.** Copilot also reads `.claude/settings.json` and runs `verfy hook pre-tool-use` from it, but reads only a top-level `permissionDecision`, so Verfy's Claude Code answer could be ignored there. Verfy now tells Copilot's call apart (it carries a `timestamp` and no transcript) and answers in Copilot's format.
+  - **Devin shows why a call was blocked.** Besides exit code 2 and stderr, the reason now goes in `{"decision": "block", "reason": ...}` on stdout, where Devin's reference says it reads it.
+  - **`COPILOT_HOME`** is honoured: `verfy hook install --copilot` writes to `$COPILOT_HOME/hooks/verfy.json` when it is set.
+- `verfy hook install` no longer calls the Codex, Gemini CLI and Copilot hooks beta.
+
 ## 0.26.3 (2026-11-20)
 
 - **The first minute.** `verfy` on its own now shows three steps (`verfy demo`, `verfy init`, `verfy doctor --live`) instead of forty commands; `verfy --help` still lists them all. `verfy demo` ends with the next step, and `verfy init` names `verfy doctor --live` among its next steps.
