@@ -2,24 +2,24 @@
 class Verfy < Formula
   desc "Lockfile and guard for the MCP tools and commands your AI coding agents use"
   homepage "https://verfy.dev"
-  version "0.28.0"
+  version "0.28.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.0/verfy-macos-arm64.tar.gz"
-      sha256 "393719f9b899a8b252fde4489bbd4bc398ea68a0c9312ded4abf16c1ebc7e368"
+      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.1/verfy-macos-arm64.tar.gz"
+      sha256 "7ba1498f86d637df0786aed74c39a8fd88906f1bbdfe92e07fb64749c195318c"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.0/verfy-linux-x64.tar.gz"
-      sha256 "ac7189ded969e813fd897b5605001d42400a5736c99e633db0041ddeb80df822"
+      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.1/verfy-linux-x64.tar.gz"
+      sha256 "685c25c14e249ea3d3045e66b4049418652dbbbebef74d78bb6e2127033edde2"
     end
     on_arm do
-      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.0/verfy-linux-arm64.tar.gz"
-      sha256 "f73089d28e8ed3504a686b8dabe28a98ff30393a28261f7b3d4f913d5e4ee1aa"
+      url "https://github.com/verfy-dev/verfy-releases/releases/download/v0.28.1/verfy-linux-arm64.tar.gz"
+      sha256 "dfbe2c80cb513bdbc46353c9df94e0be4daca835fb7519faa034929907a9184c"
     end
   end
 
