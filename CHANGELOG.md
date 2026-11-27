@@ -2,6 +2,15 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.32.0 (2026-11-29)
+
+Passkey approvals can be checked anywhere, and the trust registry gives facts release by release.
+
+- **Every verifier checks passkey approvals.** The JavaScript engine (`checkApprovals`, also in the browser), the Go package (`verfy.CheckApprovals`; `verfy-verify` reports them) and the Rust crate (`verfy_verify::check_approvals`) now check the passkey signatures receipts carry since 0.31.0, the same way `verfy verify` does and with the same messages: the challenge (request, arguments' hash, decision), the site, that the person was verified, and the ES256, EdDSA or RS256 signature. All four run the same vectors (`tests/fixtures/passkey_proofs.json`, made with node:crypto). Go stays on its standard library; the Rust crate adds RustCrypto's `p256` and `rsa`.
+
+**Verfy Cloud**
+- **Facts per release** (`/servers/<id>/facts.json`, `verfy.facts/1`): for each release of an MCP server on /servers, when it came out, whether it started in the research run, the tools it added, removed and changed, Verfy's automatic check and any review by a person of that version, and the Verfy Advisories whose OSV ranges cover it. Facts with dates, not a score.
+
 ## 0.31.0 (2026-11-28)
 
 A passkey approval is now part of the receipt, and anyone can check it.
