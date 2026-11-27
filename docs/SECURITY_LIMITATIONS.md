@@ -75,6 +75,11 @@ Verfy reduces risk; it does not remove it. These are the limits we know about. N
 - Invitations are links you share yourself; Verfy sends no email of its own (Supabase Auth sends sign-up and reset emails).
 - Policy regexes are checked for nested quantifiers, but regular expressions can still be slow on adversarial input on developer machines.
 
+## Added in 0.31.0
+
+- **Passkey proofs in receipts** show that a passkey signed the approval of exactly this call's arguments hash, on Verfy Cloud's site, with the person verified. They do not show whose passkey it was: Verfy Cloud registered the key to the account the proof names, and the receipt that carries it is signed by the device that asked. A team approval made without a passkey has no proof.
+- **Phone numbers and passports.** Phone numbers count when they are written with a country code (+...) or in the North American (555) 123-4567 form; other national formats are not recognised. Only the second line of a passport's machine-readable zone (TD3) is checked, and only when all four check digits are right; ID cards (TD1, TD2) are not.
+
 ## Added in 0.30.0
 
 - **Disputes in Verfy Cloud.** Verfy checks that a dispute record is signed, that the receipt inside it is signed by the same key and that its finding matches the receipt. It does not check that the claim is true, and a record signed by a key that is not one of the team's enrolled devices is kept with that said. The arbitrator's link is the only thing that lets them record a verdict: it is 32 random bytes, stored as a hash, limited in time and closed by a verdict or a withdrawal, but anyone the link is forwarded to can use it. The verdict is not signed by a key; its record goes into the team's chained audit log.

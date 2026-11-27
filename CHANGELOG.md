@@ -2,6 +2,21 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.31.0 (2026-11-28)
+
+A passkey approval is now part of the receipt, and anyone can check it.
+
+- **Passkey approvals in the receipt.** When a teammate approves a call in Verfy Cloud with a passkey (Face ID, a fingerprint, a security key), the gateway and the SDK's `Recorder` write the approval and the passkey's signature into that call's receipt (`decision.approval`). The signature covers the request, the hash of the call's arguments (the receipt's own `args_sha256`) and the decision.
+- **`verfy verify` checks them offline**: the challenge, the site, that the person was verified (Face ID, fingerprint or PIN) and the signature, for ES256, EdDSA and RS256 passkeys, in pure Python with no new dependency. A proof for other arguments, another request or another site fails the check.
+- **Personal data**: a passport's machine-readable zone (VFY-DLP-007, with all four ICAO 9303 check digits) and many phone numbers at once, a customer list (VFY-DLP-006, the same `dlp.bulk` threshold as email addresses), ask before they leave. 91 guard rules.
+
+**Verfy Cloud**
+- **Approve with passkey from Slack and Telegram**: a button opens the request on the phone, in the right organization, where Face ID or a fingerprint approves it. Organizations that approve only with a passkey get that button and Reject, not a plain Approve.
+- **Agents**: a dashboard page with every agent that left receipts, its calls, what was blocked, what needed a person and who approved, and its most used tools; receipts filter by agent.
+- **Verfy Advisories as OSV records**: `/advisories/all.json` and `/advisories/<ID>.json` (OSV 1.6.0) for osv-scanner and other tools.
+- **The transparency log as a C2SP checkpoint**: `/api/v1/log/checkpoint` is the log's head as a signed note, the format standard witnesses and monitors read; its verifier key is in `/.well-known/verfy-witness.json`.
+- The home page said 78 rules in one place and 89 in another; it now says 91 in both.
+
 ## 0.30.0 (2026-11-28)
 
 Disputes reach a person who decides, approvals reach Slack and email, and Verfy Verified gets its two other levels.
