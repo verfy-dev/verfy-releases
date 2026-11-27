@@ -2,6 +2,21 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
+## 0.30.0 (2026-11-28)
+
+Disputes reach a person who decides, approvals reach Slack and email, and Verfy Verified gets its two other levels.
+
+**CLI**
+- **`verfy dispute send FILE`** checks a record from `verfy dispute open` and puts it on your team's Disputes page in Verfy Cloud, from an enrolled device. The record is sent whole: its claim, its findings and the one receipt it is about.
+- **The JavaScript recorder as a file on each release**: `npm install https://github.com/verfy-dev/verfy/releases/download/cli-v0.30.0/verfy-dev-receipts-0.30.0.tgz` installs `@verfy-dev/receipts` (Node.js recorder, Vercel AI SDK wrapper, engine, types) without the npm registry. It is in SHA256SUMS and signed with Sigstore like the other files.
+
+**Verfy Cloud**
+- **Disputes**: a page where a team keeps dispute records (Verfy checks the signature, the receipt inside and the finding before keeping one) and names an arbitrator, who opens it by a private link and records one verdict with reasons. The verdict downloads as a `verfy.verdict/1` file and goes into the audit log. Verfy does not judge, and nobody pays out through Verfy: there is no insurance or arbitration partner yet.
+- **Approve from Slack**: a call that waits for a person now comes with Approve and Reject buttons in Slack, as tool changes already did, under the same rules as the dashboard (owners and admins who named their own Slack member ID; two-person rules; passkey-only organizations still need a passkey).
+- **Email**: a notification channel that writes to one member's own address, with a link to decide in Verfy. Nobody approves from the email itself, because mail scanners open links. It turns on where the server has a mail service (`RESEND_API_KEY`, `EMAIL_FROM`); verfy.dev does not have one yet.
+- **Verfy Verified, reviewed by a person**: maintainers and users ask for a review of one version on its /servers page; a person at Verfy reads the code and tools and writes, publicly and dated, what they did, with an end date. A review can be withdrawn with a public reason. The badge says "reviewed" while one is in force. None has been done yet.
+- **Verfy Verified, monitored**: every day npm or PyPI is asked for each server's newest release; a server page says when it is newer than the version the automatic check covered.
+
 ## 0.29.0 (2026-11-27)
 
 People stay in charge, rules are easier to write, and receipts reach other tools.

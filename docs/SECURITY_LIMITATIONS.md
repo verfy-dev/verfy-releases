@@ -75,6 +75,13 @@ Verfy reduces risk; it does not remove it. These are the limits we know about. N
 - Invitations are links you share yourself; Verfy sends no email of its own (Supabase Auth sends sign-up and reset emails).
 - Policy regexes are checked for nested quantifiers, but regular expressions can still be slow on adversarial input on developer machines.
 
+## Added in 0.30.0
+
+- **Disputes in Verfy Cloud.** Verfy checks that a dispute record is signed, that the receipt inside it is signed by the same key and that its finding matches the receipt. It does not check that the claim is true, and a record signed by a key that is not one of the team's enrolled devices is kept with that said. The arbitrator's link is the only thing that lets them record a verdict: it is 32 random bytes, stored as a hash, limited in time and closed by a verdict or a withdrawal, but anyone the link is forwarded to can use it. The verdict is not signed by a key; its record goes into the team's chained audit log.
+- **Approving from Slack** is as strong as the Slack account and the Slack app's signing secret: whoever controls a named approver's Slack account can approve. Organizations that need a passkey for approvals are not affected; Slack cannot approve for them.
+- **Email notifications** carry a link to Verfy, never a way to approve. Mail can be read by whoever reads the inbox.
+- **Verfy Verified reviewed by a person** is a statement by one person about one version, on the day it was made. It is not an audit, it does not cover later versions, and Verfy is not liable for the server.
+
 ## Added in 0.29.0
 
 - **Stop.** `verfy stop` writes `~/.verfy/stop.json`; the rules keep agents from removing it, but anyone at the machine can. A team's stop from Verfy Cloud reaches a device when it next checks: in the background about once a minute while its agents work, and on `verfy sync` or `verfy team stop-check`. A device that is offline, or whose agents are idle, keeps its last answer until then. `verfy resume` and `verfy breakglass` refuse to run without a terminal; the rule that refuses them to agents (VFY-SELF-003) is the real guard, because a program can fake a terminal.
