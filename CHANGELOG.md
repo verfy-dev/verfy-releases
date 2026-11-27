@@ -2,7 +2,7 @@
 
 What changed in the Verfy CLI (`pip install verfy`) and the website. Newest first. Every CLI version is on [PyPI](https://pypi.org/project/verfy/#history) and as standalone builds on the [releases page](https://github.com/verfy-dev/verfy-releases/releases).
 
-## 0.32.0 (2026-11-29)
+## 0.32.0 (2026-11-27)
 
 Passkey approvals can be checked anywhere, and the trust registry gives facts release by release.
 
@@ -11,7 +11,7 @@ Passkey approvals can be checked anywhere, and the trust registry gives facts re
 **Verfy Cloud**
 - **Facts per release** (`/servers/<id>/facts.json`, `verfy.facts/1`): for each release of an MCP server on /servers, when it came out, whether it started in the research run, the tools it added, removed and changed, Verfy's automatic check and any review by a person of that version, and the Verfy Advisories whose OSV ranges cover it. Facts with dates, not a score.
 
-## 0.31.0 (2026-11-28)
+## 0.31.0 (2026-11-27)
 
 A passkey approval is now part of the receipt, and anyone can check it.
 
@@ -26,7 +26,7 @@ A passkey approval is now part of the receipt, and anyone can check it.
 - **The transparency log as a C2SP checkpoint**: `/api/v1/log/checkpoint` is the log's head as a signed note, the format standard witnesses and monitors read; its verifier key is in `/.well-known/verfy-witness.json`.
 - The home page said 78 rules in one place and 89 in another; it now says 91 in both.
 
-## 0.30.0 (2026-11-28)
+## 0.30.0 (2026-11-27)
 
 Disputes reach a person who decides, approvals reach Slack and email, and Verfy Verified gets its two other levels.
 
