@@ -1,12 +1,12 @@
 {
-    "version": "0.32.0",
+    "version": "0.33.0",
     "description": "Lockfile and guard for the MCP tools and commands your AI coding agents use",
     "homepage": "https://verfy.dev",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/verfy-dev/verfy-releases/releases/download/v0.32.0/verfy-windows-x64.zip",
-            "hash": "ca25150aa8dd9c9d07aa7cafa9b6906bf7aec588ca4bc7cd4e65952fca7c92a3",
+            "url": "https://github.com/verfy-dev/verfy-releases/releases/download/v0.33.0/verfy-windows-x64.zip",
+            "hash": "39f03bf60583b669920ad4388bbd8efe4e950082f631671bad07910c83dc7ae3",
             "extract_dir": "verfy"
         }
     },
